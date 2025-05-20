@@ -3,7 +3,16 @@ const { Client, GatewayIntentBits, Partials, EmbedBuilder } = require('discord.j
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot activo!');
+});
 
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
+});
 const client = new Client({
     intents: [
       GatewayIntentBits.Guilds,
