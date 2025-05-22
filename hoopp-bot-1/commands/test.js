@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const ticketConfigPath = path.join(__dirname, '../ticket_config.json');
+const ticketConfigPath = path.join(__dirname, 'data/ticket_config.json');
 
 module.exports = {
   name: 'setticket',
