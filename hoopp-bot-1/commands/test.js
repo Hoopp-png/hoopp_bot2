@@ -1,33 +1,30 @@
-const { EmbedBuilder } = require('discord.js');
+const fs = require('fs');
+const path = require('path');
+const ticketConfigPath = path.join(__dirname, '../ticket_config.json');
 
 module.exports = {
-  name: 'test',
-  description: 'Test para reacciones',
-  async execute(message) {
-    console.log('Comando testreact iniciado');
+  name: 'setticket',
+  description: 'Configura el mensaje de ticket con reacción 🎫',
+  async execute(message, args) {
+    if (!message.member.permissions.has('Administrator')) {
+      return message.reply('❌ No tenés permiso para usar este comando.');
+    }
 
-    const embed = new EmbedBuilder()
-      .setColor('Random')
-      .setTitle('Reacciona con ✅ o ❌');
-
-    const msg = await message.channel.send({ embeds: [embed] });
-    console.log('Mensaje enviado, agregando reacciones');
-
-    await msg.react('✅');
-    await msg.react('❌');
-    console.log('Reacciones agregadas');
-
-    const filter = (reaction, user) => {
-      console.log(`Reacción detectada: ${reaction.emoji.name} de ${user.tag}`);
-      return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+    const embed = {
+      title: '📩 Sistema de Tickets',
+      description: 'Reaccioná con 🎫 para abrir un ticket.',
+      color: 0x00bfff
     };
 
-    try {
-      const collected = await msg.awaitReactions({ filter, max: 1, time: 30000, errors: ['time'] });
-      const reaction = collected.first();
-      await message.channel.send(`Elegiste la reacción ${reaction.emoji.name}`);
-    } catch {
-      await message.channel.send('No reaccionaste a tiempo.');
-    }
+    const ticketMsg = await message.channel.send({ embeds: [embed] });
+    await ticketMsg.react('🎫');
+
+    const config = {
+      ticketChannelId: message.channel.id,
+      ticketMessageId: ticketMsg.id
+    };
+
+    fs.writeFileSync(ticketConfigPath, JSON.stringify(config, null, 2));
+    message.reply('✅ Sistema de tickets configurado correctamente.');
   }
 };
