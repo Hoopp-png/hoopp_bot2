@@ -7,7 +7,7 @@ module.exports = {
     execute(message, args, client) { 
         
         const embed = new EmbedBuilder()
-            .setTitle('📚 Manual de Supervivencia | Hoopp Bot')
+            .setTitle('📚 Comandos | Hoopp Bot')
             .setColor('#a994ff') // El color oficial del bot
             .setDescription('Aquí tienes todo lo que puedes hacer. Recuerda usar el prefijo `!` antes de cada comando.')
             // Ponemos la foto del bot como imagen en chiquito
