@@ -79,6 +79,3 @@ module.exports = {
         message.reply({ embeds: [embed] });
     }
 };
-```eof
-
-Ahí lo tienes. Asegúrate de cambiar el link del GIF del `setThumbnail` y la imagen del `setFooter` por cosas de tu proyecto. Pruébalo, vas a ver que el tema de las fechas `<t:...:R>` y los nombres limpios le da un toque durísimo. Si un usuario llega a tener 50 ítems y la lista se rompe, me avisas y le metemos botones para pasar de página.
