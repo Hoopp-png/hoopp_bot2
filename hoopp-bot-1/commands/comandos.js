@@ -37,12 +37,12 @@ module.exports = {
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
                 .setLabel('Hoopp Web')
-                .setURL('https://tu-enlace-a-hoopp-web.com') // Pon tu link real de Render/Vercel
+                .setURL('https://aun no sabran el link perras.') // Pon tu link real de Render/Vercel
                 .setStyle(ButtonStyle.Link)
                 .setEmoji('🌐'),
             new ButtonBuilder()
                 .setLabel('Twitch')
-                .setURL('https://twitch.tv/tu_canal') // Cambia esto por tu canal
+                .setURL('https://twitch.tv/hoopp_s') // Cambia esto por tu canal
                 .setStyle(ButtonStyle.Link)
                 .setEmoji('🟣')
         );
